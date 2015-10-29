@@ -6,6 +6,7 @@ public class Sales {
 	HashMap<Integer, Double> percentageOff = new HashMap<Integer, Double>();
 	
 	Sales() {
+		percentageOff.put(0, 0.0);
 		percentageOff.put(1, 0.0);
 		percentageOff.put(2, .05);
 		percentageOff.put(3, .10);

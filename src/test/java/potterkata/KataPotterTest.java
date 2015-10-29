@@ -1,6 +1,7 @@
 package potterkata;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -77,7 +78,29 @@ public class KataPotterTest {
 		assertThat(underTest.ringMeUp(books), is(16.00));
 	}
 	
-	@Test @Ignore
+	@Test
+	public void twoSetsOfIdenticalBooksShouldCostThirtyDollarsAndFortyCents() {
+		List<String> books = new ArrayList<String>();
+		books.add(FIRST);
+		books.add(FIRST);
+		books.add(SECOND);
+		books.add(SECOND);
+		assertThat(underTest.ringMeUp(books), is(30.40));
+	}
+	
+	@Test
+	public void threeSetsOfIdenticalBooksShouldCostFortyFiveSixty() {
+		List<String> books = new ArrayList<String>();
+		books.add(FIRST);
+		books.add(FIRST);
+		books.add(FIRST);
+		books.add(SECOND);
+		books.add(SECOND);
+		books.add(SECOND);
+		assertThat(underTest.ringMeUp(books), is(closeTo(45.60, .001)));
+	}
+	
+	@Test
 	public void shouldCostFiftyOneTwenty() {
 		List<String> books = new ArrayList<String>();
 		books.add(FIRST);
@@ -90,4 +113,35 @@ public class KataPotterTest {
 		books.add(FIFTH);
 		assertThat(underTest.ringMeUp(books), is(51.20));
 	}
+	
+	@Test
+	public void shouldCostThirtyEight() {
+		List<String> books = new ArrayList<String>();
+		books.add(FIRST);
+		books.add(FIRST);
+		books.add(SECOND);
+		books.add(THIRD);
+		books.add(FOURTH);
+		books.add(FIFTH);
+		assertThat(underTest.ringMeUp(books), is(38.00));
+	}
+	
+	@Test
+	public void shouldCostALot() {
+		List<String> books = new ArrayList<String>();
+		books.add(FIRST);
+		books.add(FIRST);
+		books.add(FIRST);
+		books.add(SECOND);
+		books.add(SECOND);
+		books.add(SECOND);
+		books.add(THIRD);
+		books.add(THIRD);
+		books.add(FOURTH);
+		books.add(FOURTH);
+		books.add(FIFTH);
+		books.add(FIFTH);
+		assertThat(underTest.ringMeUp(books), is(76.80));
+	}
+	
 }
